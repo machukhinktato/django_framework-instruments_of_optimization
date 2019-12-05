@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>
+         {% block title %}
+        {{ title|title }}
+        {% endblock %}
+    </title>
+         {% block css %}
+             <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-theme.min.css' %}">
+             <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+             <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
+        {% endblock %}
+        {% block js %}
+
+        {% endblock %}
+</head>
+<body>
+        {% block content %}
+
+                <p>По техническим причинам</p><br>
+                <p>регистрация в данный момент невозможна.</p><br>
+                <p>Приносим свои извинения за возможные неудобства</p><br>
+            <button class="btn btn-round form-control">
+                <a href="{% url 'main' %}" class="">
+                    на главную
+                </a>
+            </button>
+
+        {% endblock %}
+</body>
+</html>
