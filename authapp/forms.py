@@ -3,7 +3,7 @@ import hashlib
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserChangeForm, UserCreationForm
 
-from .models import ShopUser
+from .models import ShopUser, ShopUserProfile
 
 
 class ShopUserLoginForm(AuthenticationForm):
@@ -13,6 +13,17 @@ class ShopUserLoginForm(AuthenticationForm):
 
     def __init__(self, *args, **kwargs):
         super(ShopUserLoginForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+
+
+class ShopUserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = ShopUserProfile
+        fields = ('tagline', 'aboutMe', 'gender')
+
+    def __init__(self, *args, **kwargs):
+        super(ShopUserProfileEditForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
 
@@ -32,7 +43,7 @@ class ShopUserRegisterForm(UserCreationForm):
             field.help_text = ''
 
     def save(self, commit=True):
-        user = super(ShopUserRegisterForm,self).save()
+        user = super(ShopUserRegisterForm, self).save()
         user.is_active = False
 
         salt = hashlib.sha1(
