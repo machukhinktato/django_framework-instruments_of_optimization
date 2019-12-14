@@ -22,10 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@vy=p8)kpo+!x)kx5*(vvv8s!a#0umsxt+907tul+3pt(gxtrz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-git
-# ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'basketapp',
     'adminapp',
     'social_django',
+    'ordersapp',
 ]
 
 MIDDLEWARE = [
