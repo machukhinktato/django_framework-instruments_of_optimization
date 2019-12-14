@@ -24,7 +24,8 @@ SECRET_KEY = '@vy=p8)kpo+!x)kx5*(vvv8s!a#0umsxt+907tul+3pt(gxtrz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-git
+
+ALLOWED_HOSTS = ['127.0.0.1']
 # ALLOWED_HOSTS = ['*']
 
 
