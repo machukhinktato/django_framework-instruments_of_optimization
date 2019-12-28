@@ -114,7 +114,7 @@ class OrderItemsUpdate(UpdateView):
 
 
 class OrderDelete(DeleteView):
-    mdoel = Order
+    model = Order
     success_url = reverse_lazy('ordersapp:orders_list')
 
 
