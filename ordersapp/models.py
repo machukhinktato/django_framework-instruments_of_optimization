@@ -23,10 +23,10 @@ class Order(models.Model):
                              on_delete=models.CASCADE)
     created = models.DateTimeField(verbose_name='создан', auto_now_add=True)
     updated = models.DateTimeField(verbose_name='обнволен', auto_now=True)
-    status = models.DateTimeField(verbose_name='статус',
-                                  max_length=3,
-                                  choices=ORDER_STATUS_CHOICES,
-                                  default=FORMING)
+    status = models.CharField(verbose_name='статус',
+                              max_length=3,
+                              choices=ORDER_STATUS_CHOICES,
+                              default=FORMING)
     is_active = models.BooleanField(verbose_name='активен', default=True)
 
     class Meta:
@@ -35,11 +35,12 @@ class Order(models.Model):
         verbose_name_plural = 'заказы'
 
     def __str__(self):
-        return 'Текущий заказ: {}'.format(self.id)
+        return (f'Текущий заказ: {self.id}')
+        # return 'Текущий заказ: {}'.format(self.id)
 
     def get_total_quantity(self):
         items = self.orderitems.select_related()
-        return sum(list(map(lambda x: x.quantity, items)))
+        return sum(map(lambda x: x.quantity, items))
 
     def get_product_type_quantity(self):
         items = self.orderitems.select_related()
@@ -47,7 +48,7 @@ class Order(models.Model):
 
     def get_total_cost(self):
         items = self.orderitems.select_related()
-        return sum(list(map(lambda x: x.quantity * x.product.price, items)))
+        return sum(map(lambda x: x.quantity * x.product.price, items))
 
     def delete(self):
         for item in self.orderitems.select_related():
@@ -70,3 +71,7 @@ class OrderItem(models.Model):
 
     def get_product_cost(self):
         return self.product.price * self.quantity
+
+    @staticmethod
+    def get_item(pk):
+        return OrderItem.objects.filter(pk=pk).first()
