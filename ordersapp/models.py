@@ -36,7 +36,7 @@ class Order(models.Model):
 
     def __str__(self):
         return (f'Текущий заказ: {self.id}')
-        # return 'Текущий заказ: {}'.format(self.id)
+
 
     def get_total_quantity(self):
         items = self.orderitems.select_related()
@@ -75,3 +75,4 @@ class OrderItem(models.Model):
     @staticmethod
     def get_item(pk):
         return OrderItem.objects.filter(pk=pk).first()
+
