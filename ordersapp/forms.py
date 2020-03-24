@@ -10,7 +10,8 @@ class OrderForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(OrderForm, self).__init__(*args, **kwargs)
-        self.fields['product'].queryset = Product.get_items()
+        self.fields['product'].queryset = Product.\
+            get_items().select_related('category')
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
 
