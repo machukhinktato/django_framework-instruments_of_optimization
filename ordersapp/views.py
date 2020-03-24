@@ -1,20 +1,19 @@
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
+from django.db.models.signals import pre_save, pre_delete
+from django.dispatch import receiver
+from django.forms import inlineformset_factory
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
-from django.db import transaction
-from django.http import JsonResponse
-from django.forms import inlineformset_factory, formset_factory
-
-from django.views.generic import ListView, CreateView, UpdateView,\
+from django.views.generic import ListView, CreateView, UpdateView, \
     DeleteView
 from django.views.generic.detail import DetailView
 
 from basketapp.models import Basket
-from ordersapp.models import Order, OrderItem
-from ordersapp.forms import OrderItemForm
 from mainapp.models import Product
-
-from django.dispatch import receiver
-from django.db.models.signals import pre_save, pre_delete
+from ordersapp.forms import OrderItemForm
+from ordersapp.models import Order, OrderItem
 
 
 class OrderList(ListView):
@@ -22,6 +21,10 @@ class OrderList(ListView):
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
+
+    # @login_required()
+    # def dispatch(self, request, *args, **kwargs):
+    #     return super(OrderList.self).dispatch(request, *args, **kwargs)
 
 
 class OrderItemsCreate(CreateView):
@@ -39,7 +42,7 @@ class OrderItemsCreate(CreateView):
         if self.request.POST:
             formset = OrderFormSet(self.request.POST)
         else:
-            basket_items = Basket.get_items(self.request.user)
+            basket_items = Basket.get_items(self.request.user).select_related('product', 'product__category')
             if basket_items:
                 OrderFormSet = inlineformset_factory(Order,
                                                      OrderItem,
