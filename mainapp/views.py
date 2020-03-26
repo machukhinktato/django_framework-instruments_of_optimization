@@ -8,7 +8,9 @@ from  django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def main(request):
     title = 'главная'
 
-    products = Product.objects.all()[:3]
+    products = Product.objects.filter(
+        is_active=True,
+        category__is_active=True).select_related('category')[:3]
 
     content = {'title': title, 'products': products}
     return render(request, 'mainapp/index.html', content)
@@ -24,15 +26,16 @@ def products(request, pk=None, page=1):
                 'pk': 0,
                 'name': 'все'
             }
-            products = Product.objects.filter(is_active=True,\
-                                              category__is_active=True).order_by('price')
+            products = Product.objects.filter(
+                is_active=True, category__is_active=True
+            ).order_by('price').select_related('category')
         else:
             category = get_object_or_404(ProductCategory, pk=pk,)
             products = Product.objects.filter(
                 category__pk=pk,
                 is_active=True,
                 category__is_active=True
-                    ).order_by('price')
+                    ).order_by('price').select_related('category')
 
         paginator = Paginator(products, 2)
         try:
@@ -92,15 +95,17 @@ def contact(request):
 
 
 def get_hot_product():
-    products = Product.objects.all()
+    products = Product.objects.filter(
+        is_active=True, category__is_active=True
+    ).select_related('category')
 
     return random.sample(list(products), 1)[0]
 
 
 def get_same_products(hot_product):
-    same_products = Product.objects.filter(category=hot_product.category
-                                           ).exclude(
-                                                pk=hot_product.pk)[:3]
+    same_products = Product.objects.filter(
+        category=hot_product.category, is_active=True
+    ).exclude(pk=hot_product.pk).select_related('category')[:3]
 
     return same_products
 
