@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@vy=p8)kpo+!x)kx5*(vvv8s!a#0umsxt+907tul+3pt(gxtrz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 # ALLOWED_HOSTS = ['127.0.0.1']
@@ -85,7 +85,7 @@ if DEBUG:
         'template_profiler_panel.panels.template.TemplateProfilerPanel',
     ]
 
-    ROOT_URLCONF = 'geekshop.urls'
+ROOT_URLCONF = 'geekshop.urls'
 
 TEMPLATES = [
     {
@@ -123,8 +123,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'geekbrains',
         'HOST': 'localhost',
-        # 'PORT': '5432',
-        'PORT': '',
+        'PORT': '5432',
     }
 }
 
