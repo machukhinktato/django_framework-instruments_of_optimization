@@ -1,4 +1,4 @@
-{% extends 'ordersapp/base.html' %}
+{% extends "ordersapp/base.html" %}
 {% load static %}
 {% load my_tags %}
 
@@ -7,8 +7,7 @@
     <div class="basket_list">
         {% for item in object.orderitems.select_related %}
             <div class="basket_record">
-                <img src="{{ item.product.image|media_folder_products }}"
-                     alt="{{ item.product.short_desc }}">
+                <img src="{{ item.product.image|media_folder_products }}" alt="{{ item.product.short_desc }}">
                 <span class="category_name">{{ item.product.category.name }}</span>
                 <span class="product_name">{{ item.product.name }}</span>
                 <span class="product_price">{{ item.product.price }}&nbspруб</span>
@@ -18,4 +17,5 @@
         {% endfor %}
     </div>
     {% include 'ordersapp/includes/inc_order_actions.html' %}
+
 {% endblock %}
