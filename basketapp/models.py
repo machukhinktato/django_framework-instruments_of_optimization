@@ -11,34 +11,25 @@ class Basket(models.Model):
     add_datetime = models.DateTimeField(verbose_name='время добавления', auto_now_add=True)
 
     def _get_product_cost(self):
-        """return cost of all products this type"""
         return self.product.price * self.quantity
 
     product_cost = property(_get_product_cost)
 
-    # product_cost = cached_property(_get_product_cost, name='product_cost')
-
     @cached_property
-    # @property
     def get_items_cached(self):
         return self.user.basket.select_related()
 
     def get_total_quantity(self):
-        "return total quantity for user"
-        # _items = Basket.objects.filter(user=self.user)
         _items = self.get_items_cached
         return sum(list(map(lambda x: x.quantity, _items)))
 
     def get_total_cost(self):
-        "return total cost for user"
-        # _items = Basket.objects.filter(user=self.user)
         _items = self.get_items_cached
         return sum(list(map(lambda x: x.product_cost, _items)))
 
     @staticmethod
     def get_items(user):
         return user.basket.select_related().order_by('product__category')
-        # return Basket.objects.filter(user=user).select_related()
 
     @staticmethod
     def get_product(user, product):
