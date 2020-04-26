@@ -1,0 +1,23 @@
+# http://localhost:8000/
+# http://localhost:8000/products/
+# http://localhost:8000/contact/
+# http://localhost:8000/order/
+# http://localhost:8000/basket/
+# http://localhost:8000/auth/edit/
+# http://localhost:8000/products/category/0/
+# http://localhost:8000/products/category/1/
+# http://localhost:8000/products/category/2/
+# http://localhost:8000/products/category/3/
+# http://localhost:8000/products/category/4/
+
+http://95.216.216.141/
+http://95.216.216.141/products/
+http://95.216.216.141/contact/
+http://95.216.216.141/order/
+http://95.216.216.141/basket/
+http://95.216.216.141/auth/edit/
+http://95.216.216.141/products/category/0/
+http://95.216.216.141/products/category/1/
+http://95.216.216.141/products/category/2/
+http://95.216.216.141/products/category/3/
+http://95.216.216.141/products/category/4/
