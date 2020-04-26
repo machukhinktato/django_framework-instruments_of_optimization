@@ -1,0 +1,44 @@
+
+C:\IT\DjangoProjects\django_framework-instruments_of_optimization>python manage.py test
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+db_profile UPDATE for <class 'mainapp.models.ProductCategory'>:
+db_profile UPDATE for <class 'mainapp.models.ProductCategory'>:
+db_profile UPDATE for <class 'mainapp.models.ProductCategory'>:
+db_profile UPDATE for <class 'mainapp.models.ProductCategory'>:
+Installed 24 object(s) from 1 fixture(s)
+context processor basket works
+context processor basket works
+context processor basket works
+context processor basket works
+context processor basket works
+context processor basket works
+context processor basket works
+context processor basket works
+context processor basket works
+context processor basket works
+context processor basket works
+context processor basket works
+context processor basket works
+context processor basket works
+context processor basket works
+context processor basket works
+context processor basket works
+context processor basket works
+BEGIN;
+SELECT setval(pg_get_serial_sequence('"mainapp_productcategory"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "mainapp_productcategory";
+SELECT setval(pg_get_serial_sequence('"mainapp_product"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "mainapp_product";
+SELECT setval(pg_get_serial_sequence('"authapp_shopuser_groups"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "authapp_shopuser_groups";
+SELECT setval(pg_get_serial_sequence('"authapp_shopuser_user_permissions"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "authapp_shopuser_user_permissions";
+SELECT setval(pg_get_serial_sequence('"authapp_shopuser"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "authapp_shopuser";
+SELECT setval(pg_get_serial_sequence('"authapp_shopuserprofile"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "authapp_shopuserprofile";
+SELECT setval(pg_get_serial_sequence('"ordersapp_order"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "ordersapp_order";
+SELECT setval(pg_get_serial_sequence('"ordersapp_orderitem"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "ordersapp_orderitem";
+SELECT setval(pg_get_serial_sequence('"basketapp_basket"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "basketapp_basket";
+COMMIT;
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.313s
+
+OK
+Destroying test database for alias 'default'...
