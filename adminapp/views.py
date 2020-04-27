@@ -11,8 +11,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils.decorators import method_decorator
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
+from django.db.models import F
 from django.db import connection
-
 
 class UsersListView(ListView):
     model = ShopUser
@@ -40,7 +40,8 @@ class ProductCategoryUpdateView(UpdateView):
     model = ProductCategory
     template_name = 'adminapp/category_update.html'
     success_url = reverse_lazy('admin:categories')
-    fields = '__all__'
+    # fields = '__all__'
+    form_class = ProductCategoryEditForm
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
