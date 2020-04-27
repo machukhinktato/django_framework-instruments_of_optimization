@@ -60,3 +60,5 @@ class Command(BaseCommand):
                 f'{orderitem.product.name:15}: скидка '
                 f'{abs(orderitem.total_price):6.2f} руб. | '
                 f'{orderitem.order.updated - orderitem.order.created}')
+
+        db_profile_by_type('learn_db', '', connection.queries)
