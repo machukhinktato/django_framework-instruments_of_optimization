@@ -3,8 +3,10 @@
 
 
 {% block content %}
-    <form class="form-horizontal" action="{% url 'auth:edit' %}" method="post"
-enctype="multipart/form-data">
+    <div class="h2 text-center head">
+        Профиль
+    </div>
+    <form class="form-horizontal" action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ edit_form.as_p }}
         {{ profile_form.as_p }}
